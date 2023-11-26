@@ -1,0 +1,13 @@
+[package]
+name = "refresh-iceberg-datafusion-dashbook"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dashbook-catalog = { git = "https://github.com/dashbook/dashbook-catalog.git" }
+datafusion_iceberg = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+iceberg-rust = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+iceberg-catalog-nessie = { git = "https://github.com/dashbook/iceberg-catalog-nessie-rust.git" }
+tokio = { version = "1.33.0", features = ["macros", "rt-multi-thread"] }
