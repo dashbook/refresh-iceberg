@@ -41,14 +41,12 @@ async fn main() -> Result<(), Error> {
             let builder = AmazonS3Builder::new()
                 .with_region(&s3_config.aws_region)
                 .with_bucket_name(config.bucket.clone().expect("No bucket specified."))
-                .with_access_key_id(&s3_config.aws_access_key_id);
-
-            let builder = if let Some(aws_secret_access_key) = &s3_config.aws_secret_access_key {
-                builder.with_secret_access_key(aws_secret_access_key)
-            } else {
-                builder
-            };
-            Arc::new(builder.build()?)
+                .with_access_key_id(&s3_config.aws_access_key_id)
+                .with_secret_access_key(s3_config.aws_secret_access_key.as_ref().ok_or(
+                    Error::NotFound("Aws".to_owned(), "secret access key".to_owned()),
+                )?)
+                .build()?;
+            Arc::new(builder)
         }
     };
 
