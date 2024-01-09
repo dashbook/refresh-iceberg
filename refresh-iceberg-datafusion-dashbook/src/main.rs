@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 
 #[tokio::main]
 async fn main() -> Result<(), Error> {
-    let config_json = fs::read_to_string("/tmp/refresh.json")?;
+    let config_json = fs::read_to_string("/tmp/config/refresh.json")?;
     let config: Config = serde_json::from_str(&config_json)?;
 
     let mut parts = config.identifier.split(".");
