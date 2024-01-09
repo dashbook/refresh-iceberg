@@ -50,7 +50,7 @@ async fn main() -> Result<(), Error> {
         }
     };
 
-    let catalog_list = Arc::new(SqlCatalogList::new(&config.url, object_store).await?);
+    let catalog_list = Arc::new(SqlCatalogList::new(&config.catalog_url, object_store).await?);
 
     let catalog = catalog_list
         .catalog(&catalog_name)
@@ -85,7 +85,7 @@ async fn main() -> Result<(), Error> {
 pub struct Config {
     #[serde(flatten)]
     pub object_store: ObjectStoreConfig,
-    pub url: String,
+    pub catalog_url: String,
     pub identifier: String,
     pub bucket: Option<String>,
     pub branch: Option<String>,
