@@ -40,7 +40,13 @@ async fn main() -> Result<(), Error> {
         ObjectStoreConfig::S3(s3_config) => {
             let builder = AmazonS3Builder::new()
                 .with_region(&s3_config.aws_region)
-                .with_bucket_name(config.bucket.clone().expect("No bucket specified."))
+                .with_bucket_name(
+                    config
+                        .bucket
+                        .map(|x| x.trim_start_matches("s3://").to_owned())
+                        .clone()
+                        .expect("No bucket specified."),
+                )
                 .with_access_key_id(&s3_config.aws_access_key_id)
                 .with_secret_access_key(s3_config.aws_secret_access_key.as_ref().ok_or(
                     Error::NotFound("Aws".to_owned(), "secret access key".to_owned()),
