@@ -52,6 +52,7 @@ async fn main() -> Result<(), Error> {
                     Error::NotFound("Aws".to_owned(), "secret access key".to_owned()),
                 )?)
                 .build()?;
+
             Arc::new(builder)
         }
     };
