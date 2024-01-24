@@ -33,10 +33,11 @@ async fn main() -> Result<(), Error> {
         )))?
         .to_owned();
 
-    let catalog_list = Arc::new(DashbookS3CatalogList::new(
-        &config.access_token,
-        &config.id_token,
-    ));
+    let catalog_list = Arc::new(
+        DashbookS3CatalogList::new(&config.access_token, &config.id_token)
+            .await
+            .unwrap(),
+    );
 
     let catalog = catalog_list
         .catalog(&catalog_name)

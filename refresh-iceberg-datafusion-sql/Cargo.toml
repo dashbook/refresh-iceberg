@@ -14,3 +14,4 @@ object_store = { version = "0.7", features = ["cloud"] }
 tokio = { version = "1.33.0", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1.0.193", features = ["derive"] }
 serde_json = "1.0.108"
+anyhow = "1.0.79"

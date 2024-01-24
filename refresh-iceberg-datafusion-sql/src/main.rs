@@ -38,7 +38,7 @@ async fn main() -> Result<(), Error> {
     let object_store: Arc<dyn ObjectStore> = match &config.object_store {
         ObjectStoreConfig::Memory => Arc::new(InMemory::new()),
         ObjectStoreConfig::S3(s3_config) => {
-            let builder = AmazonS3Builder::new()
+            let mut builder = AmazonS3Builder::new()
                 .with_region(&s3_config.aws_region)
                 .with_bucket_name(
                     config
@@ -50,10 +50,17 @@ async fn main() -> Result<(), Error> {
                 .with_access_key_id(&s3_config.aws_access_key_id)
                 .with_secret_access_key(s3_config.aws_secret_access_key.as_ref().ok_or(
                     Error::NotFound("Aws".to_owned(), "secret access key".to_owned()),
-                )?)
-                .build()?;
+                )?);
 
-            Arc::new(builder)
+            if let Some(endpoint) = &s3_config.aws_endpoint {
+                builder = builder.with_endpoint(endpoint);
+            }
+
+            if let Some(allow_http) = &s3_config.aws_allow_http {
+                builder = builder.with_allow_http(allow_http.parse().unwrap());
+            }
+
+            Arc::new(builder.build()?)
         }
     };
 
