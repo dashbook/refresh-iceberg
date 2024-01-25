@@ -1,7 +1,7 @@
 FROM rust:bookworm as builder
 WORKDIR /usr/src/refresh-iceberg-datafusion-dashbook
-COPY ./refresh-iceberg-datafusion-dashbook/ .
-RUN cargo install --path .
+COPY . .
+RUN cargo install --path ./refresh-iceberg-datafusion-dashbook/
 FROM rust:slim-bookworm
 RUN apt-get update & apt-get install -y extra-runtime-dependencies & rm -rf /var/lib/apt/lists/*
 COPY --from=builder /usr/local/cargo/bin/refresh-iceberg-datafusion-dashbook /usr/local/bin/refresh-iceberg-datafusion-dashbook
