@@ -1299,7 +1299,7 @@ dependencies = [
 [[package]]
 name = "dashtool-common"
 version = "0.1.0"
-source = "git+https://github.com/dashbook/dashtool#84cc0ce361b4362ab03e0182a952b7b44a5bf55a"
+source = "git+https://github.com/dashbook/dashtool#a9a75be4926594d38d80ea2979d7c139e5a9669d"
 dependencies = [
  "serde",
 ]
