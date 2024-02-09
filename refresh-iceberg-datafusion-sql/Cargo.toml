@@ -6,12 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-datafusion_iceberg = { git = "https://github.com/JanKaul/iceberg-rust.git" }
-dashtool-common = { git = "https://github.com/dashbook/dashtool" }
-iceberg-rust = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+datafusion_iceberg = { workspace = true }
+dashtool-common = { workspace = true }
+iceberg-rust = { workspace = true }
 iceberg-catalog-sql = { git = "https://github.com/JanKaul/iceberg-rust.git" }
-object_store = { version = "0.7", features = ["cloud"] }
-tokio = { version = "1.33.0", features = ["macros", "rt-multi-thread"] }
-serde = { version = "1.0.193", features = ["derive"] }
-serde_json = "1.0.108"
-anyhow = "1.0.79"
+object_store = { workspace = true }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }

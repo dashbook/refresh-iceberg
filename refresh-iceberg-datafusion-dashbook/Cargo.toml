@@ -7,10 +7,10 @@ edition = "2021"
 
 [dependencies]
 dashbook-catalog = { git = "https://github.com/dashbook/dashbook-catalog.git" }
-datafusion_iceberg = { git = "https://github.com/JanKaul/iceberg-rust.git" }
-iceberg-rust = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+datafusion_iceberg = { workspace = true }
+iceberg-rust = { workspace = true }
 iceberg-catalog-nessie = { git = "https://github.com/dashbook/iceberg-catalog-nessie-rust.git" }
-tokio = { version = "1.33.0", features = ["macros", "rt-multi-thread"] }
-serde_json = "1.0"
-serde = { version = "1.0.193", features = ["derive"] }
-anyhow = "1.0.79"
+tokio = { workspace = true }
+serde_json = { workspace = true }
+serde = { workspace = true }
+anyhow = { workspace = true }

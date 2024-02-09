@@ -74,7 +74,7 @@ async fn main() -> Result<(), Error> {
             "catalog".to_string(),
         ))?;
 
-    let matview = if let Tabular::MaterializedView(matview) = catalog
+    let mut matview = if let Tabular::MaterializedView(matview) = catalog
         .load_table(&Identifier::try_new(&[
             namespace_name.to_owned(),
             table_name.to_owned(),
@@ -87,7 +87,7 @@ async fn main() -> Result<(), Error> {
         panic!("Not a materialized view.");
     };
 
-    refresh_materialized_view(&matview, catalog_list, config.branch.as_deref())
+    refresh_materialized_view(&mut matview, catalog_list, config.branch.as_deref())
         .await
         .expect("Failed to refresh materialized view.");
 

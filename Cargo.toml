@@ -4,3 +4,13 @@ members = [
     "refresh-iceberg-datafusion-dashbook",
     "refresh-iceberg-datafusion-sql",
 ]
+
+[workspace.dependencies]
+datafusion_iceberg = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+dashtool-common = { git = "https://github.com/dashbook/dashtool" }
+iceberg-rust = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+object_store = { version = "0.9", features = ["cloud"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
