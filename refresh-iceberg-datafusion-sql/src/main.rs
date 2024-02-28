@@ -75,7 +75,7 @@ async fn main() -> Result<(), Error> {
         ))?;
 
     let mut matview = if let Tabular::MaterializedView(matview) = catalog
-        .load_table(&Identifier::try_new(&[
+        .load_tabular(&Identifier::try_new(&[
             namespace_name.to_owned(),
             table_name.to_owned(),
         ])?)

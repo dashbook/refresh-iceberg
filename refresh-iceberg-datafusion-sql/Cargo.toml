@@ -9,7 +9,7 @@ edition = "2021"
 datafusion_iceberg = { workspace = true }
 dashtool-common = { workspace = true }
 iceberg-rust = { workspace = true }
-iceberg-catalog-sql = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+iceberg-catalog-sql = "0.2"
 object_store = { workspace = true }
 tokio = { workspace = true }
 serde = { workspace = true }

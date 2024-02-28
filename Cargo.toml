@@ -6,9 +6,9 @@ members = [
 ]
 
 [workspace.dependencies]
-datafusion_iceberg = { git = "https://github.com/JanKaul/iceberg-rust.git" }
-dashtool-common = { git = "https://github.com/dashbook/dashtool" }
-iceberg-rust = { git = "https://github.com/JanKaul/iceberg-rust.git" }
+datafusion_iceberg = "0.2"
+dashtool-common = "0.1"
+iceberg-rust = "0.2"
 object_store = { version = "0.9", features = ["cloud"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"] }
