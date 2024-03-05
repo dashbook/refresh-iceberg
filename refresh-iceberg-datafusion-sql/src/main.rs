@@ -2,11 +2,11 @@ use std::{fs, sync::Arc};
 
 use dashtool_common::ObjectStoreConfig;
 use datafusion_iceberg::materialized_view::refresh_materialized_view;
-use iceberg_catalog_sql::SqlCatalogList;
 use iceberg_rust::{
     catalog::{identifier::Identifier, tabular::Tabular, CatalogList},
     error::Error,
 };
+use iceberg_sql_catalog::SqlCatalogList;
 use object_store::{aws::AmazonS3Builder, memory::InMemory, ObjectStore};
 use serde::{Deserialize, Serialize};
 
