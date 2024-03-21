@@ -6,9 +6,9 @@ members = [
 ]
 
 [workspace.dependencies]
-datafusion_iceberg = "0.2"
+datafusion_iceberg = "0.3"
 dashtool-common = "0.1"
-iceberg-rust = "0.2"
+iceberg-rust = "0.3"
 object_store = { version = "0.9", features = ["cloud"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"] }
