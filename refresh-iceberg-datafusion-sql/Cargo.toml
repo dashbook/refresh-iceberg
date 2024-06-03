@@ -3,13 +3,14 @@ name = "refresh-iceberg-datafusion-sql"
 version = "0.1.0"
 edition = "2021"
 
+resolver = "2"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 datafusion_iceberg = { workspace = true }
 dashtool-common = { workspace = true }
 iceberg-rust = { workspace = true }
-iceberg-sql-catalog = "0.3"
+iceberg-sql-catalog = "0.4"
 sqlx = { version = "0.7.4", features = ["runtime-tokio", "tls-rustls", "any", "sqlite", "postgres", "mysql"], default-features = false }
 object_store = { workspace = true }
 tokio = { workspace = true }
