@@ -3,11 +3,11 @@ use std::{fs, sync::Arc};
 use dashtool_common::ObjectStoreConfig;
 use datafusion_iceberg::materialized_view::refresh_materialized_view;
 use iceberg_rust::{
-    catalog::{identifier::Identifier, tabular::Tabular, CatalogList},
+    catalog::{bucket::ObjectStoreBuilder, identifier::Identifier, tabular::Tabular, CatalogList},
     error::Error,
 };
 use iceberg_sql_catalog::SqlCatalogList;
-use object_store::{aws::AmazonS3Builder, memory::InMemory, ObjectStore};
+use object_store::aws::AmazonS3Builder;
 use serde::{Deserialize, Serialize};
 
 #[tokio::main]
@@ -35,8 +35,8 @@ async fn main() -> Result<(), Error> {
         )))?
         .to_owned();
 
-    let object_store: Arc<dyn ObjectStore> = match &config.object_store {
-        ObjectStoreConfig::Memory => Arc::new(InMemory::new()),
+    let object_store = match &config.object_store {
+        ObjectStoreConfig::Memory => ObjectStoreBuilder::memory(),
         ObjectStoreConfig::S3(s3_config) => {
             let mut builder = AmazonS3Builder::new()
                 .with_region(&s3_config.aws_region)
@@ -60,25 +60,22 @@ async fn main() -> Result<(), Error> {
                 builder = builder.with_allow_http(allow_http.parse().unwrap());
             }
 
-            Arc::new(builder.build()?)
+            ObjectStoreBuilder::S3(builder)
         }
     };
 
     let catalog_list = Arc::new(SqlCatalogList::new(&config.catalog_url, object_store).await?);
 
-    let catalog = catalog_list
-        .catalog(&catalog_name)
-        .await
-        .ok_or(Error::NotFound(
-            "Catalog".to_string(),
-            "catalog".to_string(),
-        ))?;
+    let catalog = catalog_list.catalog(&catalog_name).ok_or(Error::NotFound(
+        "Catalog".to_string(),
+        "catalog".to_string(),
+    ))?;
 
     let mut matview = if let Tabular::MaterializedView(matview) = catalog
-        .load_tabular(&Identifier::try_new(&[
-            namespace_name.to_owned(),
-            table_name.to_owned(),
-        ])?)
+        .load_tabular(&Identifier::try_new(
+            &[namespace_name.to_owned(), table_name.to_owned()],
+            None,
+        )?)
         .await
         .expect("Failed to load tabular.")
     {
