@@ -1,5 +1,5 @@
 [package]
-name = "refresh-iceberg-datafusion-sql"
+name = "refresh-iceberg-datafusion-file"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,8 +10,7 @@ resolver = "2"
 datafusion_iceberg = { workspace = true }
 dashtool-common = { workspace = true }
 iceberg-rust = { workspace = true }
-iceberg-sql-catalog = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5" }
-sqlx = { version = "0.8", features = ["runtime-tokio", "tls-rustls", "any", "sqlite", "postgres", "mysql"], default-features = false }
+iceberg-file-catalog = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5" }
 object_store = { workspace = true }
 tokio = { workspace = true }
 serde = { workspace = true }
