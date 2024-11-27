@@ -3,7 +3,7 @@ name: dockerhub
 on:
   push:
     branches:
-      - 'sql'
+      - 'main'
 
 jobs:
   docker:
@@ -27,3 +27,15 @@ jobs:
         with:
           push: true
           tags: dashbook/refresh-iceberg-datafusion:sql
+          file: "./Dockerfile-sql"
+          cache-from: type=registry,ref=dashbook/refresh-iceberg-datafusion:sql
+          cache-to: type=inline
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: dashbook/refresh-iceberg-datafusion:file
+          file: "./Dockerfile-file"
+          cache-from: type=registry,ref=dashbook/refresh-iceberg-datafusion:file
+          cache-to: type=inline
