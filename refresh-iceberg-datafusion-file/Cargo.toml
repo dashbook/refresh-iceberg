@@ -10,7 +10,7 @@ resolver = "2"
 datafusion_iceberg = { workspace = true }
 dashtool-common = { workspace = true }
 iceberg-rust = { workspace = true }
-iceberg-file-catalog = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5" }
+iceberg-file-catalog = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5", branch = "copy-if-not-exists"   }
 object_store = { workspace = true }
 tokio = { workspace = true }
 serde = { workspace = true }

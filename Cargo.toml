@@ -8,9 +8,9 @@ members = [
 resolver = "2"
 
 [workspace.dependencies]
-datafusion_iceberg = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5" }
+datafusion_iceberg = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5", branch = "copy-if-not-exists"  }
 dashtool-common = "0.1"
-iceberg-rust = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5" }
+iceberg-rust = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5", branch = "copy-if-not-exists"   }
 object_store = { version = "0.11.1", features = ["cloud"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1", features = ["derive"] }

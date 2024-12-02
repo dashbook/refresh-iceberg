@@ -10,7 +10,7 @@ resolver = "2"
 datafusion_iceberg = { workspace = true }
 dashtool-common = { workspace = true }
 iceberg-rust = { workspace = true }
-iceberg-sql-catalog = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5" }
+iceberg-sql-catalog = { git = "https://github.com/jankaul/iceberg-rust", version = "0.5", branch = "copy-if-not-exists"   }
 sqlx = { version = "0.8", features = ["runtime-tokio", "tls-rustls", "any", "sqlite", "postgres", "mysql"], default-features = false }
 object_store = { workspace = true }
 tokio = { workspace = true }
